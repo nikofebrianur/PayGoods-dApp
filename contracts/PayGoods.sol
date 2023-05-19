@@ -4,6 +4,11 @@ pragma solidity ^0.8.9;
 contract PayGoods {
 
 // Define the Owner of the smart contract
+address public owner;
+
+constructor() {
+    owner = msg.sender;
+}
 
 // Create Struct and Mapping for request, transaction, and name
 
