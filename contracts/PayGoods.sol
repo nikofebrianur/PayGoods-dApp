@@ -11,6 +11,14 @@ constructor() {
 }
 
 // Create Struct and Mapping for request, transaction, and name
+struct request {
+    address requestor;
+    uint256 amount;
+    string name;
+    string message;
+}
+
+mapping(address => request[]) requests; 
 
 // Add a name to wallet address
 
