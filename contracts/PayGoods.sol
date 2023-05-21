@@ -42,6 +42,16 @@ function addName(string memory _name) public {
     newUserName.hasName = true;
 }
 // Create a Request
+function createRequest(address user, uint256 _amount, string memory _message) public {
+    request memory newRequest;
+    newRequest.requestor = msg.sender;
+    newRequest.amount = _amount;
+    newRequest.message = _message;
+    if(names[msg.sender].hasName) {
+        newRequest.name = names[msg.sender].name;
+    }
+    requests[user].push(newRequest);
+}
 
 // Pay a Request
 
