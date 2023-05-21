@@ -26,8 +26,14 @@ struct sendReceive {
     string otherPartyName;
 }
 
+struct userName {
+    string name;
+    bool hasName;
+}
+
 mapping(address => request[]) requests; 
 mapping(address => sendReceive[]) history;
+mapping(address => userName) names;
 
 // Add a name to wallet address
 
