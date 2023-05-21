@@ -36,7 +36,11 @@ mapping(address => sendReceive[]) history;
 mapping(address => userName) names;
 
 // Add a name to wallet address
-
+function addName(string memory _name) public {
+    userName storage newUserName = names[msg.sender];
+    newUserName.name = _name;
+    newUserName.hasName = true;
+}
 // Create a Request
 
 // Pay a Request
