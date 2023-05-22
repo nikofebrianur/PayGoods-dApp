@@ -64,6 +64,8 @@ function payRequest(uint256 _request) public payable {
 
     payable(payableRequest.requestor).transfer(msg.value);
 
+    addHistory(msg.sender, payableRequest.requestor, payableRequest.amount, payableRequest.message);
+
     myRequests[_request] = myRequests[myRequests.length - 1];
     myRequests.pop();
 }
