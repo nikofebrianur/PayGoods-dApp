@@ -78,6 +78,16 @@ function addHistory(address sender, address receiver, uint256 _amount, string me
         newSend.otherPartyName = names[receiver].name;
     }
     history[sender].push(newSend);
+
+    sendReceive memory newReceive;
+    newReceive.action = "+";
+    newReceive.amount = _amount;
+    newReceive.message = _message;
+    newReceive.otherPartyAddress = sender;
+    if(names[sender].hasName) {
+        newReceive.otherPartyName = names[sender].name;
+    }
+    history[receiver].push(newReceive);
 }
 
 // Get all requests sent to a User
