@@ -54,6 +54,19 @@ function createRequest(address user, uint256 _amount, string memory _message) pu
 }
 
 // Pay a Request
+function payRequest(uint256 _request) public payable {
+    require(_request < requests[msg.sender].length, "No such request");
+    request[] storage myRequests = requests[msg.sender];
+    request storage payableRequest = myRequests[_request];
+
+    uint256 toPay = payableRequest.amount * 10000000000000000000000;
+    require(msg.value == (toPay), "Pay correct amount");
+
+    payable(payableRequest.requestor).transfer(msg.value);
+
+    myRequests[_request] = myRequests[myRequests.length - 1];
+    myRequests.pop();
+}
 
 // Get all requests sent to a User
 
