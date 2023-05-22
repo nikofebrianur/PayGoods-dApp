@@ -68,7 +68,19 @@ function payRequest(uint256 _request) public payable {
     myRequests.pop();
 }
 
+function addHistory(address sender, address receiver, uint256 _amount, string memory _message) private {
+    sendReceive memory newSend;
+    newSend.action = "-";
+    newSend.amount = _amount;
+    newSend.message = _message;
+    newSend.otherPartyAddress = receiver;
+    if(names[receiver].hasName) {
+        newSend.otherPartyName = names[receiver].name;
+    }
+    history[sender].push(newSend);
+}
+
 // Get all requests sent to a User
 
-// Fet all historic transactions user has been apart of
+// Get all historic transactions user has been apart of
 }
