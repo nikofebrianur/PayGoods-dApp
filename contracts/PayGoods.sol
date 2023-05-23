@@ -93,6 +93,27 @@ function addHistory(address sender, address receiver, uint256 _amount, string me
 }
 
 // Get all requests sent to a User
+function getMyRequests(address _user) public view returns(
+    address[] memory,
+    uint256[] memory,
+    string[] memory,
+    string[] memory
+) {
+    address[] memory addresses = new address[](requests[_user].length);
+    uint256[] memory amount = new uint256[](requests[_user].length);
+    string[] memory name = new string[](requests[_user].length);
+    string[] memory message = new string[](requests[_user].length);
+
+    for(uint i = 0; i < requests[_user].length; i++) {
+        request storage myRequests = requests[_user][i];
+        addresses[i] = myRequests.requestor;
+        amount[i] = myRequests.amount;
+        name[i] = myRequests.name;
+        message[i] = myRequests.message;
+    }
+
+    return (addresses, amount, name, message);
+}
 
 // Get all historic transactions user has been apart of
 }
